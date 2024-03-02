@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/student/{student}/edit', [StudentController::class, 'edit'])->name('student.edit');
 
     Route::resource('/student', StudentController::class);
     Route::resource('/subject', SubjectController::class);

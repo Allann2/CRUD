@@ -30,7 +30,7 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) //allan
 {
     $request->validate([
         'name' => 'required',
@@ -59,7 +59,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', compact('student'));
+        
     }
 
     /**
@@ -67,7 +68,17 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'email' => 'required|email',
+            'age' => 'required|integer',
+            'phone' => 'required',
+        ]);
+    
+        $student->update($request->all());
+    
+        return redirect()->route('student.index')->with('success', 'Student updated successfully.');
     }
 
     /**
